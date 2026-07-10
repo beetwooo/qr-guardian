@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QR Guardian</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+	<div class="container">
+		<span class="corner-bl"></span>
+		<span class="corner-br"></span>
+
+		<div class="brand">
+			<img src="assets/ascii-art-cropped1.png" alt="logo" class="logo">
+			<h1>QR Guardian</h1>
+		</div>
+
+		<div id="scanStage">
+			<div id="reader"></div>
+		</div>
+
+		<div id="loading" class="hidden">
+			<div class="spinner"></div>
+			<p>검사중..</p>
+		</div>
+
+		<div id="result" class="hidden">
+			<h2 id="status"></h2>
+			<div id="stats"></div>
+			<div class="buttons">
+				<button id="openBtn">사이트 열기</button>
+				<button id="continueBtn" class="danger">게속</button>
+				<button id="cancelBtn">취소</button>
+			</div>
+		</div>
+	</div>
+	<script src="qr.js"></script>
+</body>
+</html>
