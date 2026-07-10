@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-@font-face { font-family: 'Inter'; src: url('../assets/fonts/Inter_18pt-Light.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/corpta.ttf') format('truetype'); }
 
 body {
   margin: 0;
@@ -14,17 +14,87 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(255,255,255,0.95) 0.9px, transparent 1.5px),
+    radial-gradient(circle at 18% 68%, rgba(255,255,255,0.9) 1px, transparent 1.8px),
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85) 0.9px, transparent 1.4px),
+    radial-gradient(circle at 52% 55%, rgba(255,255,255,0.95) 1px, transparent 1.7px),
+    radial-gradient(circle at 78% 20%, rgba(255,255,255,0.9) 0.9px, transparent 1.5px),
+    radial-gradient(circle at 84% 82%, rgba(255,255,255,0.8) 1px, transparent 1.6px);
+  background-size: 120px 120px, 80px 80px, 120px 120px, 90px 90px, 160px 160px, 110px 110px;
+  opacity: 0.5;
+  filter: saturate(1.1) contrast(1.2);
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 94% 8%, rgba(255,255,255,0.24), transparent 7%),
+    radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 0.8px, transparent 1.3px),
+    radial-gradient(circle, rgba(255,255,255,0.45) 0.6px, transparent 1px);
+  background-size: 160px 160px, 45px 45px, 70px 70px, 110px 110px;
+  opacity: 0.28;
+}
 .container {
   position: relative;
-  width: 520px;
+  z-index: 1;
+  width: 420px;
   max-width: 95%;
-  background: #0a0a0a;
-  border: 1px solid #2a2a2a;
-  padding: 40px 32px 32px;
-  border-radius: 0;
+  min-height: 480px;
+  background: rgba(255,255,255,0.08);
+  background-image: radial-gradient(circle at 15% 20%, rgba(255,255,255,0.18), transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(255,255,255,0.12), transparent 16%);
+  background-blend-mode: screen, overlay;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 32px 24px 20px;
+  border-radius: 22px;
   text-align: left;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(58, 192, 255, 0.14), transparent 26%),
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.08), transparent 20%);
+  opacity: 0.7;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 70px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+
+.container > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* corner tick marks like the reference card */
@@ -51,12 +121,26 @@ body {
 }
 
 h1 {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 700;
   letter-spacing: 1px;
   margin: 0;
-  color: #ffffff;
+  color: #f8f8ff;
   text-transform: none;
+  text-shadow: 0 1px 10px rgba(95, 191, 255, 0.16);
+  line-height: 1.05;
+}
+
+.container > .brand > div {
+  min-width: 0;
+}
+
+.container > .brand .subtitle {
+  color: #9da1ab;
+  font-size: 13px;
+  margin: 0;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
 }
 
 .container > p.subtitle {
@@ -69,14 +153,15 @@ h1 {
 
 .brand {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .logo {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   filter: brightness(1.1);
 }
@@ -84,19 +169,61 @@ h1 {
 /* ---- Scan stage ---- */
 #scanStage {
   width: 100%;
+  position: relative;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+#scanStage::before,
+#scanStage::after {
+  display: none;
 }
 
 /* ---- QR reader ---- */
 #reader {
-  width: 100% !important;
+  position: relative;
+  z-index: 0;
+  width: 88%;
+  max-width: 320px;
+  margin: 28px auto 0;
   aspect-ratio: 1 / 1;
-  border-radius: 0;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid #2a2a2a;
   background: #050505;
 }
 
+#reader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.55);
+  clip-path: inset(18% 18% 18% 18%);
+}
+
+#reader::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  max-width: 320px;
+  max-height: 320px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 3;
+}
+
 #reader video {
+  position: relative;
+  z-index: 1;
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
