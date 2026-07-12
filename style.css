@@ -2,7 +2,9 @@
   box-sizing: border-box;
 }
 
-@font-face { font-family: 'Inter'; src: url('../assets/fonts/corpta.ttf') format('truetype'); }
+
+
+@font-face { font-family: 'Corpta1'; src: url('../assets/fonts/corpta.otf') format('truetype'); }
 
 html {
   height: 100%;
@@ -10,7 +12,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Inter', monospace;
+  font-family: 'Corpta1', monospace;
   background: #060606;
   color: #e8e8e8;
   display: flex;
