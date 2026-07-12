@@ -8,6 +8,7 @@
 	<script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
+	<div class="starfield"></div>
 	<div class="container">
 		<span class="corner-bl"></span>
 		<span class="corner-br"></span>
@@ -21,14 +22,13 @@
 
 		<div id="scanStage">
 			<div id="reader"></div>
+			<div id="loading" class="hidden" style="display:none;">
+				<div class="spinner"></div>
+				<p>검사중..</p>
+			</div>
 		</div>
 
-		<div id="loading" class="hidden">
-			<div class="spinner"></div>
-			<p>검사중..</p>
-		</div>
-
-		<div id="result" class="hidden">
+		<div id="result" class="hidden" style="display:none;">
 			<h2 id="status"></h2>
 			<div id="stats"></div>
 			<div class="buttons">
