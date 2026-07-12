@@ -44,7 +44,6 @@ function showStage(stage) {
 }
 
 function onScanFailure(errorMessage) {
-  // No need to show every scan failure; scanner tries continuously.
 }
 
 async function fetchScanResult(decodedText) {
